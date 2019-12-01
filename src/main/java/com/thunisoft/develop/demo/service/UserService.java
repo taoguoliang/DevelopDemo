@@ -6,6 +6,8 @@
  */
 package com.thunisoft.develop.demo.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -53,8 +55,8 @@ public class UserService {
      * @date 2019/11/27 20:23
      * @version v1.0.0
      **/
-    @Cacheable(value = "users", key = "#userId")
-    public Users getUserById(String userId) {
-        return userRepository.getOne(userId);
+    @Cacheable(value = "users", key = "#userId", condition = "#result != null")
+    public Optional<Users> getUserById(String userId) {
+        return userRepository.findById(userId);
     }
 }
