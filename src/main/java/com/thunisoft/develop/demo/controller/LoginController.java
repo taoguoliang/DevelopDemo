@@ -6,12 +6,16 @@
  */
 package com.thunisoft.develop.demo.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.thunisoft.develop.demo.dto.LoginDTO;
+import com.thunisoft.develop.demo.entity.Users;
 import com.thunisoft.develop.demo.service.LoginService;
 
 /**
@@ -34,12 +38,19 @@ public class LoginController {
      *
      * @description 登录
      * @param loginDTO 登录DTO
+     * @param request HttpServletRequest
      * @author taogl
      * @date 2019/12/3 10:43
      * @version v1.0.0
      **/
     @PostMapping("/login")
-    public void login(LoginDTO loginDTO) {
-        loginService.login(loginDTO);
+    public void login(LoginDTO loginDTO, HttpServletRequest request) {
+        Users users = loginService.login(loginDTO);
+        request.getSession().setAttribute("user", users);
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 }

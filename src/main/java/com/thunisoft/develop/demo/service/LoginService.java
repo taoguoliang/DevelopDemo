@@ -6,7 +6,7 @@
  */
 package com.thunisoft.develop.demo.service;
 
-import java.util.Objects;
+import java.util.Optional;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +35,14 @@ public class LoginService {
      *
      * @description 登录
      * @param loginDTO 登录DTO
+     * @return Users
      * @author taogl
      * @date 2019/12/3 10:55
      * @version v1.0.0
      **/
-    public void login(LoginDTO loginDTO) {
-        Users users = userService.getUserByLoginIdAndPassword(loginDTO.getLoginId(),
-            DigestUtils.md5Hex(loginDTO.getPassword()));
-        if (Objects.isNull(users)) {
-            throw new LoginException();
-        }
+    public Users login(LoginDTO loginDTO) {
+        return Optional.ofNullable(
+            userService.getUserByLoginIdAndPassword(loginDTO.getLoginId(), DigestUtils.md5Hex(loginDTO.getPassword())))
+            .orElseThrow(LoginException::new);
     }
 }

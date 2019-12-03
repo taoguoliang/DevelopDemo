@@ -35,6 +35,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
         Users user = (Users)request.getSession().getAttribute("user");
         if (Objects.isNull(user)) {
             response.sendRedirect("/login");
+            return false;
         }
         String method = request.getMethod();
         String remoteAddr = request.getHeader("X-Forwarded-For");

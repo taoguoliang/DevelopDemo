@@ -1,5 +1,8 @@
 server:
   port: 9999
+  servlet:
+    session:
+      timeout: PT5M
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
@@ -8,6 +11,9 @@ spring:
     password: jxglpt
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
   cache:
     ehcache:
       config: classpath:ehcache.xml
+  thymeleaf:
+    cache: false
