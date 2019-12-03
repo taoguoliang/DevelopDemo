@@ -6,7 +6,6 @@
  */
 package com.thunisoft.develop.demo.interceptor;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,12 +36,6 @@ public class LoginHandlerInterceptor implements HandlerInterceptor {
             response.sendRedirect("/login");
             return false;
         }
-        String method = request.getMethod();
-        String remoteAddr = request.getHeader("X-Forwarded-For");
-        String requestUri = request.getRequestURI();
-        String queryString = request.getQueryString();
-        log.info("请求方法 = {}, 请求ip = {}, 请求URI = {}, 请求参数 = {}, 请求时间={}", method, remoteAddr, requestUri,
-            queryString, LocalDateTime.now());
         return true;
     }
 }

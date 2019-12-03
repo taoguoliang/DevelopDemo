@@ -17,3 +17,10 @@ spring:
       config: classpath:ehcache.xml
   thymeleaf:
     cache: false
+
+### 定时任务线程池配置
+schedule:
+  thread:
+    pool:
+      size: 20
+      timeout: 60
