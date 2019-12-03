@@ -8,20 +8,18 @@ package com.thunisoft.develop.demo.advice;
 
 import java.io.Serializable;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 /**
  * ApiResponse
  *
- * @description TODO
+ * @description Api响应实体
  * @author taogl
  * @date 2019/12/1 16:37
  * @version v1.0.0
  */
 @Data
-@AllArgsConstructor
 @Builder
 public class ApiResponse implements Serializable {
     private String code;

@@ -1,7 +1,7 @@
 /**
  * @projectName DevelopDemo
  * @package com.thunisoft.develop.demo.dto
- * @className com.thunisoft.develop.demo.dto.UserDTO
+ * @className com.thunisoft.develop.demo.dto.LoginDTO
  * @copyright Copyright 2019 Thuisoft, Inc. All rights reserved.
  */
 package com.thunisoft.develop.demo.dto;
@@ -11,21 +11,19 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
- * UserDTO
+ * LoginDTO
  *
- * @description 用户DTO
+ * @description 登录DTO
  * @author taogl
- * @date 2019/11/27 19:43
+ * @date 2019/12/3 10:42
  * @version v1.0.0
  */
 @Data
-@ApiModel("用户DTO")
-public class UserDTO {
+@ApiModel(value = "登录DTO")
+public class LoginDTO {
+
     @ApiModelProperty("登录id")
     private String loginId;
-
-    @ApiModelProperty("用户名")
-    private String userName;
 
     @ApiModelProperty("密码")
     private String password;

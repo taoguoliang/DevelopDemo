@@ -19,4 +19,16 @@ import com.thunisoft.develop.demo.entity.Users;
  * @version v1.0.0
  */
 public interface UserRepository extends JpaRepository<Users, String> {
+
+    /**
+     * UserRepository
+     *
+     * @description 根据loginId和密码获取用户
+     * @param loginId 登录名
+     * @return 用户
+     * @author taogl
+     * @date 2019/12/3 10:49
+     * @version v1.0.0
+     **/
+    Users getByLoginIdEqualsAndPasswordEquals(String loginId, String password);
 }

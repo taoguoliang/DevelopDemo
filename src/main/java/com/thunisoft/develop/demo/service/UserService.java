@@ -59,4 +59,19 @@ public class UserService {
     public Optional<Users> getUserById(String userId) {
         return userRepository.findById(userId);
     }
+
+    /**
+     * UserService
+     *
+     * @description 根据loginId获取User
+     * @param loginId 登录名
+     * @return 用户
+     * @author taogl
+     * @date 2019/11/27 20:23
+     * @version v1.0.0
+     **/
+    @Cacheable(value = "users", key = "#loginId", condition = "#result != null")
+    public Users getUserByLoginIdAndPassword(String loginId, String password) {
+        return userRepository.getByLoginIdEqualsAndPasswordEquals(loginId, password);
+    }
 }

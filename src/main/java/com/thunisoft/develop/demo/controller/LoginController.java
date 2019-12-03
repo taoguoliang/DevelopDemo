@@ -6,8 +6,13 @@
  */
 package com.thunisoft.develop.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.thunisoft.develop.demo.dto.LoginDTO;
+import com.thunisoft.develop.demo.service.LoginService;
 
 /**
  * LoginController
@@ -17,7 +22,24 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2019/11/26 21:17
  * @version v1.0.0
  */
-@RestController
+@Controller
 @RequestMapping
 public class LoginController {
+
+    @Autowired
+    private LoginService loginService;
+
+    /**
+     * LoginController
+     *
+     * @description 登录
+     * @param loginDTO 登录DTO
+     * @author taogl
+     * @date 2019/12/3 10:43
+     * @version v1.0.0
+     **/
+    @PostMapping("/login")
+    public void login(LoginDTO loginDTO) {
+        loginService.login(loginDTO);
+    }
 }
