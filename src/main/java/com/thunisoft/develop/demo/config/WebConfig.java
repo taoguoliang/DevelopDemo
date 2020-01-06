@@ -6,13 +6,18 @@
  */
 package com.thunisoft.develop.demo.config;
 
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.thunisoft.develop.demo.interceptor.LoginHandlerInterceptor;
+
+import lombok.Setter;
 
 /**
  * WebConfig
@@ -23,7 +28,13 @@ import com.thunisoft.develop.demo.interceptor.LoginHandlerInterceptor;
  * @version v1.0.0
  */
 @Configuration
+@PropertySource(value = "path.properties", encoding = "UTF-8")
+@ConfigurationProperties(prefix = "path.filter")
+@Setter
 public class WebConfig implements WebMvcConfigurer {
+
+    /** 不需要认证的地址 */
+    private String anon;
 
     /**
      * WebConfig
@@ -41,8 +52,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(getLoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/login")
-            .excludePathPatterns("/static/**");
+        registry.addInterceptor(getLoginHandlerInterceptor()).addPathPatterns("/**")
+            .excludePathPatterns(StringUtils.split(anon, ","));
     }
 
     @Override

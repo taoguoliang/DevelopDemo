@@ -106,6 +106,13 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+        <!--解决IDEA @ConfigurationProperties注解飘红问题-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
 	</dependencies>
 
 	<build>

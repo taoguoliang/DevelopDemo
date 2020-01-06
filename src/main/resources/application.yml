@@ -18,7 +18,7 @@ spring:
   thymeleaf:
     cache: false
 
-### 定时任务线程池配置
+### 瀹氭椂浠诲姟閰嶇疆
 schedule:
   thread:
     pool:
