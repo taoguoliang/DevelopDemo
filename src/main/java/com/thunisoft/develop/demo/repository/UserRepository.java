@@ -25,6 +25,7 @@ public interface UserRepository extends JpaRepository<Users, String> {
      *
      * @description 根据loginId和密码获取用户
      * @param loginId 登录名
+     * @param password 密码
      * @return 用户
      * @author taogl
      * @date 2019/12/3 10:49
